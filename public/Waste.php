@@ -13,11 +13,13 @@ class Waste
     private $uploads;
     private $message;
 
-    function __construct()
+    function __construct($id=0)
     {
-        $this->id = bin2hex(random_bytes(16));
+        if ($id === 0)
+            $id = bin2hex(random_bytes(16));
+
+        $this->id = $id;
         $this->uploads = null;
-//        $this->message = "This is a newly created message";
         $this->message = "";
         $this->generateQRCode();
     }

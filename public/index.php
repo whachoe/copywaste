@@ -52,20 +52,20 @@ $app->get('/', function (Request $request, Response $response, $args) {
 $app->get('/waste/{id}', function (Request $request, Response $response, $args) use ($renderer) {
     $id = $args['id'];
     $waste = Waste::load($id);
-    if ($waste == null) {
-      $response->getBody()->write("Waste not found");
-      return $response->withStatus(404);
-    } else {
-        $viewData = [
-            'id' => $id,
-            'message' => $waste->getMessage(),
-            'uploads' => $waste->getUploads(),
-        ];
 
-        return $renderer->render($response, 'index.php', $viewData);
+    if ($waste == null) {
+        // Make a Waste with a random ID and redirect to it
+        $waste = new Waste($id);
+        $waste->save();
     }
 
-    return $response->withStatus(500);
+    $viewData = [
+        'id' => $id,
+        'message' => $waste->getMessage(),
+        'uploads' => $waste->getUploads(),
+    ];
+
+    return $renderer->render($response, 'index.php', $viewData);
 });
 
 $app->get('/api/v2/waste/{id}', function (Request $request, Response $response, $args) {
