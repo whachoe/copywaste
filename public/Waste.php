@@ -2,6 +2,11 @@
 
 namespace CopyWaste;
 
+use BaconQrCode\Renderer\ImageRenderer;
+use BaconQrCode\Renderer\Image\ImagickImageBackEnd;
+use BaconQrCode\Renderer\RendererStyle\RendererStyle;
+use BaconQrCode\Writer;
+
 class Waste
 {
     public $id;
@@ -14,6 +19,7 @@ class Waste
         $this->uploads = null;
 //        $this->message = "This is a newly created message";
         $this->message = "";
+        $this->generateQRCode();
     }
 
     public function getId()
@@ -122,5 +128,20 @@ class Waste
         $waste->setMessage(file_get_contents($dir . '/message.txt'));
         $waste->getUploads();
         return $waste;
+    }
+
+    private function generateQRCode()
+    {
+        $filename = QRCODE_DIR . '/'.$this->getId().'.png';
+
+        $renderer = new ImageRenderer(
+            new RendererStyle(400),
+            new ImagickImageBackEnd()
+        );
+
+        $writer = new Writer($renderer);
+        $host = $_SERVER['HTTP_HOST'];
+        $id = $this->getId();
+        $writer->writeFile("https://$host/waste/$id", $filename);
     }
 }

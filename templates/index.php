@@ -113,6 +113,10 @@
     </div>
 
     <div class="col-md-3 col-xs-12">
+        <div id="qrcode">
+            <h4>QRCode</h4>
+            <img src="/qrcodes/<?= $id ?>.png" alt="QR Code" width="150" height="150"/>
+        </div>
         <?php include_once 'uploadpanel.php'; ?>
     </div>
 </div>

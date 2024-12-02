@@ -1,5 +1,6 @@
 <?php
-define('WASTE_ROOT_DIR', __DIR__ .'/../wastes/');
+define('WASTE_ROOT_DIR', __DIR__ .'/../wastes');
+define('QRCODE_DIR', __DIR__.'/qrcodes');
 
 require __DIR__ . '/../vendor/autoload.php';
 require __DIR__ . '/Waste.php';
