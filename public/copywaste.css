@@ -1,0 +1,14 @@
+a.list-group-item {
+    font-size: .75em;
+}
+p.list-group-item-text {
+    font-size: .75em;
+}
+
+#uploadpanel.htmx-added {
+    opacity: 0;
+}
+#uploadpanel {
+    opacity: 1;
+    transition: opacity 1.5s ease-out;
+}
