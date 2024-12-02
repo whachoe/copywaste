@@ -133,17 +133,16 @@ $app->get('/api/v2/download/{id}/{filename}', function (Request $request, Respon
 
     if (file_exists($filepath)) {
         $content_type = mime_content_type($filepath) ? mime_content_type($filepath) : 'application/octet-stream';
-        $response = $response->
-            header('Content-Description: File Transfer');
-            header("Content-Type: $content_type");
-            header('Content-Disposition: attachment; filename=' . basename($filepath));
+        header('Content-Description: File Transfer');
+        header("Content-Type: $content_type");
+        header('Content-Disposition: attachment; filename=' . basename($filepath));
 //            header('Content-Transfer-Encoding: binary')
-            header('Expires: 0');
-            header('Cache-Control: must-revalidate');
-            header('Pragma: public');
-            header('Content-Length: '. filesize($filepath));
-            readfile($filepath);
-            exit();
+        header('Expires: 0');
+        header('Cache-Control: must-revalidate');
+        header('Pragma: public');
+        header('Content-Length: '. filesize($filepath));
+        readfile($filepath);
+        exit();
     } else {
         $response->getBody()->write("File not found");
         return $response->withStatus(404);
