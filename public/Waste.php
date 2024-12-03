@@ -61,6 +61,9 @@ class Waste
         $target = $uploaddir . '/' . $file->getClientFilename();
         $file->moveTo($target);
 
+        // Change mtime of message because we use this mtime to determine if the waste is expired
+        touch($this->getDir(). '/message.txt');
+
         return $target;
     }
 

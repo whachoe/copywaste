@@ -25,29 +25,7 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
     <script src="https://unpkg.com/htmx.org@2.0.3"></script>
-
-    <script>
-      // A function to copy the text from the textarea to the clipboard
-      function copyToClipboard() {
-        if (!navigator.clipboard) {
-          fallbackCopyTextToClipboard();
-          return;
-        }
-
-        navigator.clipboard.writeText(document.getElementById("message").value).then(function () {
-          console.log('Async: Copying to clipboard was successful!');
-
-        }, function (err) {
-          console.error('Async: Could not copy text: ', err);
-        });
-      }
-
-      function fallbackCopyTextToClipboard() {
-        var copyText = document.getElementById("message");
-        copyText.select();
-        document.execCommand("copy");
-      }
-    </script>
+    <script src="/copywaste.js"></script>
 </head>
 
 <body>
@@ -120,6 +98,7 @@
         <?php include_once 'uploadpanel.php'; ?>
     </div>
 </div>
+<?php include_once 'footer.php'; ?>
 </body>
 
 </html>
