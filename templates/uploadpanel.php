@@ -8,7 +8,7 @@ function human_filesize($filename, $decimals = 0)
 }
 
 ?>
-<div id="uploadpanel">
+<div id="uploadpanel" class="mb-2">
     <h4>Uploads</h4>
     <div class="list-group">
         <?php
