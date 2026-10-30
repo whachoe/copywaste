@@ -39,7 +39,7 @@ function human_filesize($filename, $decimals = 0)
     <form id='form' enctype="multipart/form-data" hx-encoding='multipart/form-data' hx-post='/api/v2/upload/<?= $id ?>'
           hx-target="#uploadpanel" hx-swap="outerHTML">
         <input type='file' name='uploadfile' class="">
-        <button class="btn btn-primary" style="margin-top:20px">
+        <button class="btn btn-primary" style="margin-top:20px; margin-bottom:20px;">
             Upload
         </button>
         <progress id='progress' value='0' max='100' class="htmx-indicator"></progress>
